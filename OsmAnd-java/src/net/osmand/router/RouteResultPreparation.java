@@ -73,9 +73,10 @@ public class RouteResultPreparation {
 			}
 			RouteSegmentResult currentSegment = result.get(i);
 			// Identify preceding goStraights within distance limit and suppress
-			if (currentSegment != null && currentSegment.getTurnType() != null) {
+			if (currentSegment != null) {
 				distanceToNextTurn += currentSegment.getDistance();
-				if (currentSegment.getTurnType().getValue() == TurnType.C &&
+				if (currentSegment.getTurnType() != null &&
+						currentSegment.getTurnType().getValue() == TurnType.C &&
 						distanceToNextTurn <= 100) {
 					result.get(i).getTurnType().setSkipToSpeak(true);
 				} else {
